@@ -8,6 +8,7 @@ require 'net/https'
 require 'chronic'
 require 'trollop'
 require 'highline/import'
+require 'term/ansicolor'
 
 ## app dependencies
 require 'hcl/utility'
@@ -16,6 +17,8 @@ require 'hcl/timesheet_resource'
 require 'hcl/project'
 require 'hcl/task'
 require 'hcl/day_entry'
+
+String.send :include, Term::ANSIColor
 
 # Workaround for annoying SSL warning:
 #  >> warning: peer certificate won't be verified in this SSL session

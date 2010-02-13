@@ -79,12 +79,14 @@ module HCl
       date = args.empty? ? nil : Chronic.parse(args.join(' '))
       total_hours = 0.0
       DayEntry.all(date).each do |day|
-        running = day.running? ? '(running) ' : ''
-        puts "\t#{day.formatted_hours}\t#{running}#{day.project} #{day.notes}"[0..78]
+        running = day.running? ? '(running) '.yellow : ''
+        message = "\t#{day.formatted_hours}\t#{running}#{day.client} - #{day.project} #{day.notes}"[0..78]
+        message.green if running
         total_hours = total_hours + day.hours.to_f
+        puts message
       end
-      puts "\t" + '-' * 13
-      puts "\t#{as_hours total_hours}\ttotal (as of #{current_time})"
+      puts "\t" + '-' * 40
+      puts "\t#{as_hours total_hours}\ttotal " + "(as of #{current_time})".black.bold
     end
     
   private
