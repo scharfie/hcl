@@ -95,10 +95,16 @@ commands show the timesheet for the specified day:
 
 ## Author
 
-[Zack Hobson][zgh], [OpenSourcery LLC][os]
+HCl was designed and implemented by [Zack Hobson][zgh].
+
+* Non-SSL support by [Michael Bleigh][mbleigh].
+* Resume command by [Brian Cooke][bricooke].
+* UI improvements by [Chris Scharf][scharfie].
 
 See LICENSE for copyright details.
 
-[zgh]: mailto:zack@opensourcery.com
-[os]: http://www.opensourcery.com/
+[zgh]: http://github.com/zenhob
+[mbleigh]: http://github.com/mbleigh
+[bricooke]: http://github.com/bricooke
+[scharfie]: http://github.com/scharfie
 

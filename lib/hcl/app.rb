@@ -81,6 +81,9 @@ module HCl
         else
           show
         end
+      rescue RuntimeError => e
+        puts "Error: #{e}"
+        exit 1
       rescue TimesheetResource::Failure => e
         puts "Internal failure. #{e}"
         exit 1
@@ -102,6 +105,7 @@ Commands:
     hcl unset <key>
     hcl start <task> [msg]
     hcl stop [msg]
+    hcl resume
     hcl note <msg>
 
 Examples:
@@ -136,6 +140,7 @@ EOM
         config['login'] = ask("Email Address: ")
         config['password'] = ask("Password: ") { |q| q.echo = false }
         config['subdomain'] = ask("Subdomain: ")
+        config['ssl'] = %w(y yes).include?(ask("Use SSL? (y/n): ").downcase)
         TimesheetResource.configure config
         write_config config
       end
