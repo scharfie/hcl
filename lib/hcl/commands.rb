@@ -5,7 +5,9 @@ module HCl
       if tasks.empty?
         puts "No cached tasks. Run `hcl show' to populate the cache and try again."
       else
-        tasks.each { |task| puts "#{task.project.id} #{task.id}\t#{task}" }
+        tasks.each do |task|
+          puts '%8d %8d %s' % [task.project.id, task.id, ('# ' + task.to_s).black.bold]
+        end
       end
       nil
     end
