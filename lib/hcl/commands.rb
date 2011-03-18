@@ -1,12 +1,16 @@
 module HCl
   module Commands
-    def tasks
+    def tasks(filter=nil)
       tasks = Task.all
       if tasks.empty?
         puts "No cached tasks. Run `hcl show' to populate the cache and try again."
       else
+        filter = Regexp.new(filter, 'i') unless filter.nil?
         tasks.each do |task|
-          puts '%8d %8d %s' % [task.project.id, task.id, ('# ' + task.to_s).black.bold]
+          task_as_string = task.to_s
+          if filter.nil? || task_as_string =~ filter
+            puts '%8d %8d %s' % [task.project.id, task.id, ('# ' + task_as_string).black.bold]
+          end
         end
       end
       nil
